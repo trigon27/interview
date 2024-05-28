@@ -1,10 +1,12 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+require("dotenv").config();
 const userRoutes = require("./routes/user");
 const todo = require("./routes/Todos");
-const port = 4000;
+const port = process.env.PORT || 4000;
 const cors = require("cors");
+
 // const User = require("./models/Users");
 // const TodoRoutes = require("./routes/TodoRoutes");
 
@@ -23,9 +25,8 @@ app.get("/", (req, res) => {
 app.use("/", userRoutes);
 app.use("/", todo);
 // app.use("/", TodoRoutes);
-
-const mongoURI =
-  "mongodb+srv://ashraf:pokemon@cluster0.kltlald.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const connectionUrl = process.env.MONGOURL;
+const mongoURI = connectionUrl;
 mongoose
   .connect(mongoURI)
   .then(() => {
