@@ -8,10 +8,10 @@ const cors = require("cors");
 // const User = require("./models/Users");
 // const TodoRoutes = require("./routes/TodoRoutes");
 
-const whitelist = ["http://localhost:3000"]; // Add your frontend URL
+const whitelist = ["http://localhost:3000"];
 const corsOptions = {
   origin: whitelist,
-  credentials: true, // Enable credentials
+  credentials: true,
 };
 
 app.use(cors(corsOptions));

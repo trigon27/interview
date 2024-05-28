@@ -41,3 +41,21 @@ exports.getTodosByUserId = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+exports.updateTodoStatus = async (req, res) => {
+  const { id } = req.params;
+  const { completed } = req.body;
+
+  try {
+    const todo = await Todo.findById(id);
+    if (!todo) {
+      return res.status(404).json({ message: "Todo not found" });
+    }
+
+    todo.completed = completed;
+    await todo.save();
+
+    res.json({ todo });
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
+};

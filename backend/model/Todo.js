@@ -14,6 +14,10 @@ const todoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  completed: {
+    type: Boolean,
+    default: false, // Default value is false, indicating the todo is not completed
+  },
 });
 
 const Todo = mongoose.model("Todo", todoSchema);
